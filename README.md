@@ -13,7 +13,6 @@
 <img align="center" alt="C" height="30" width="40" src="https://github.com/devicons/devicon/blob/master/icons/c/c-original.svg">
 <img align="center" alt="JS" height="30" width="40" src="https://github.com/devicons/devicon/blob/master/icons/javascript/javascript-original.svg">
 <img align="center" alt="Godot" height="30" width="40" src="https://github.com/devicons/devicon/blob/master/icons/godot/godot-original.svg">
-<img align="right" alt="Rafa-yoda" src="https://cdn.discordapp.com/attachments/870813262504165398/880575369135140864/bongo-cat-keyboard-smash.gif">
 
 ##
 
