@@ -13,7 +13,7 @@
 <img align="center" alt="C" height="30" width="40" src="https://github.com/devicons/devicon/blob/master/icons/c/c-original.svg">
 <img align="center" alt="JS" height="30" width="40" src="https://github.com/devicons/devicon/blob/master/icons/javascript/javascript-original.svg">
 <img align="center" alt="Godot" height="30" width="40" src="https://github.com/devicons/devicon/blob/master/icons/godot/godot-original.svg">
-<img align="right" alt="gif" height="30" width="40" src="https://cdn.discordapp.com/attachments/870813262504165398/883477419867111474/luffy-smile-luffy-giggle.gif">
+<img align="right" alt="gif" height="100" width="110" src="https://cdn.discordapp.com/attachments/870813262504165398/883477419867111474/luffy-smile-luffy-giggle.gif">
 
  
 ##
