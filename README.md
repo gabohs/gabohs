@@ -1,9 +1,9 @@
 ## Gabox:
 
  <div>
-  <a href="https://github.com/Gaboxhehe">
-  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=Gaboxhehe&show_icons=true&theme=city_lights&include_all_commits=true&count_private=true"/>
-  <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Gaboxhehe&layout=compact&langs_count=7&theme=city_lights"/>
+  <a href="https://github.com/Gaboxhs">
+  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=Gaboxhs&show_icons=true&theme=city_lights&include_all_commits=true&count_private=true"/>
+  <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Gaboxhs&layout=compact&langs_count=7&theme=city_lights"/>
 </div>
 
 <br>
@@ -19,7 +19,7 @@
 ##
  <br>
 
- ![Snake animation](https://github.com/Gaboxhehe/Gaboxhehe/blob/output/github-contribution-grid-snake.svg)
+ ![Snake animation](https://github.com/Gaboxhs/Gaboxhs/blob/output/github-contribution-grid-snake.svg)
 
 
 
