@@ -1,4 +1,3 @@
-## Gabox:
 
  <div>
   <a href="https://github.com/Gaboxhs">
