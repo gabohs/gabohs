@@ -10,9 +10,7 @@
 <img align="center" alt="Python" height="40" width="50" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg">
 <img align="center" alt="Arduino" height="40" width="50" src="https://github.com/devicons/devicon/blob/master/icons/arduino/arduino-original.svg">
 <img align="center" alt="CPP" height="40" width="50" src="https://github.com/devicons/devicon/blob/master/icons/cplusplus/cplusplus-original.svg">
-<img align="right" alt="gif" height="120" width="130" src="https://cdn.discordapp.com/attachments/870813262504165398/883477419867111474/luffy-smile-luffy-giggle.gif">
 
- 
 ##
  <br>
 
