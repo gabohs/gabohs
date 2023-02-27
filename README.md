@@ -15,8 +15,3 @@
  <br>
 
  ![Snake animation](https://github.com/Gaboxhs/Gaboxhs/blob/output/github-contribution-grid-snake.svg)
-
-
-
-
-
