@@ -8,9 +8,9 @@
 
 <br>
 
-<img alt="Python" height="40" width="50" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg">
-<img align="right" alt="Arduino" height="40" width="50" src="https://github.com/devicons/devicon/blob/master/icons/arduino/arduino-original.svg">
-<img alt="CPP" height="40" width="50" src="https://github.com/devicons/devicon/blob/master/icons/cplusplus/cplusplus-original.svg">
+<img elign="left" alt="Python" height="40" width="50" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg">
+<img align="left" alt="Arduino" height="40" width="50" src="https://github.com/devicons/devicon/blob/master/icons/arduino/arduino-original.svg">
+<img align="left" alt="CPP" height="40" width="50" src="https://github.com/devicons/devicon/blob/master/icons/cplusplus/cplusplus-original.svg">
 
 ##
  <br>
