@@ -13,7 +13,9 @@
 <img align="left" alt="CPP" height="40" width="50" src="https://github.com/devicons/devicon/blob/master/icons/cplusplus/cplusplus-original.svg">
 
  <br>
-##
+
+ ##
+ 
  <br>
 
  ![Snake animation](https://github.com/Gaboxhs/Gaboxhs/blob/output/github-contribution-grid-snake.svg)
