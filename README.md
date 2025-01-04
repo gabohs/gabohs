@@ -18,10 +18,13 @@
 
 </p>
 
-<br>
-<br>
-
- <h2 align="center">Github Stats</h2> 
+  <div id="user-content-toc">
+  <ul align="center" style="list-style: none;">
+    <summary>
+      <h2>Github stats</h2>
+    </summary>
+  </ul>
+</div>
 
  <br>
 
@@ -31,5 +34,4 @@
   
  </p>
 
-         
-<br>      
+## 
