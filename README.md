@@ -14,6 +14,10 @@
 
 <img align="left" alt="CPP" height="40" width="50"     src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" > <img align="left" alt="Python" height="40" width="50"  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"       > <img align="left" alt="Arduino" height="40" width="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/arduino/arduino-original.svg"     >
 
+<br><br>
+<img src="https://komarev.com/ghpvc/?username=gabohs&&style=for-the-badge"/>
+
+
 
  <br>
 
