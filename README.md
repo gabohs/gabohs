@@ -1,8 +1,9 @@
  <div>
   
  <a href="https://github.com/gabohs">
-  <img align="center" src="https://github-readme-stats.vercel.app/api?username=gabohs&show_icons=true&theme=city_lights&include_all_commits=true&count_private=true"/>  
-  <img align="center" src="https://github-readme-stats.vercel.app/api/top-langs/?username=gabohs&layout=compact&langs_count=7&theme=city_lights"/>
+  <img align="center" src="https://github-readme-stats.vercel.app/api?username=gabohs&show_icons=true&theme=shadow_blue&include_all_commits=true&count_private=true"/>  
+  <br>
+  <img align="center" src="https://github-readme-stats.vercel.app/api/top-langs/?username=gabohs&layout=compact&langs_count=7&theme=shadow_blue"/>
 </a>
 
 
