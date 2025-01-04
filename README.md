@@ -18,10 +18,12 @@
 
 </p>
 
+***
+
   <div id="user-content-toc">
   <ul align="center" style="list-style: none;">
     <summary>
-      <h2>Github stats</h2>
+      <h2>Github Stats</h2>
     </summary>
   </ul>
 </div>
@@ -34,4 +36,4 @@
   
  </p>
 
-## 
+***
