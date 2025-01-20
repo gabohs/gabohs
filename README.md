@@ -1,4 +1,4 @@
-<img src="https://github.com/gabohs/gabohs/blob/main/gabohs.gif" />
+ <!-- <img src="https://github.com/gabohs/gabohs/blob/main/gabohs.gif" /> -->
 
 <p align="center">
 
