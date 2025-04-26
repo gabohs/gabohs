@@ -33,8 +33,8 @@
  <br>
 
  <p align="center">
-    <img src="https://github-readme-stats.vercel.app/api?username=gabohs&show_icons=true&theme=shadow_blue&include_all_commits=true&count_private=true&line_height=30" height=220>
-    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=gabohs&layout=donut&langs_count=8&theme=shadow_blue&size_weight=0.5&count_weight=0.5&hide=html,css" height=220>
+    <img src="https://github-readme-stats.vercel.app/api?username=gabohs&show_icons=true&theme=shadow_blue&include_all_commits=true&count_private=true&line_height=30" height=230>
+    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=gabohs&layout=donut&langs_count=8&theme=shadow_blue&size_weight=0.5&count_weight=0.5&hide=html,css" height=230>
   
  </p>
 
