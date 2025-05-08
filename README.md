@@ -2,7 +2,7 @@
 
 <p align="center">
 
-  <img src="https://github.com/gabohs/gabohs/blob/output/github-contribution-grid-snake.svg">
+  ![Snake](https://github.com/gabohs/gabohs/blob/output/github-contribution-grid-snake.svg)
 
   <br>
   <br>
