@@ -1,8 +1,8 @@
  <!-- <img src="https://github.com/gabohs/gabohs/blob/main/gabohs.gif" /> -->
 
-<p align="center">
+ ![Snake](https://github.com/gabohs/gabohs/blob/output/github-contribution-grid-snake.svg)
 
-  ![Snake](https://github.com/gabohs/gabohs/blob/output/github-contribution-grid-snake.svg)
+<p align="center">
 
   <br>
   <br>
