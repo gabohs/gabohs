@@ -15,7 +15,8 @@
   <img alt="CPP" src="https://skillicons.dev/icons?i=cpp,python,arduino">
 </div>
 
- <!-- SNAKE ANIMATION -->
+ <!-- SNAKE ANIMATION 
 <div class="snake" align="center">
   <img src="https://github.com/gabohs/gabohs/blob/output/github-contribution-grid-snake.svg">
-</div>
+</div>  
+-->
