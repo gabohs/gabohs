@@ -15,6 +15,12 @@
   <img alt="CPP" src="https://skillicons.dev/icons?i=cpp,python,arduino">
 </div>
 
+<details>
+  <summary>📬 How to reach me: </summary>
+  
+  - 📧 schaeffer.gabrielh@gmail.com
+</details>
+
  <!-- SNAKE ANIMATION 
 <div class="snake" align="center">
   <img src="https://github.com/gabohs/gabohs/blob/output/github-contribution-grid-snake.svg">
