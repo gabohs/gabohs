@@ -16,7 +16,7 @@
 </div>
 
 <details>
-  <summary>📬 How to reach me: </summary>
+  <summary>📬 E-Mail: </summary>
   
   - 📧 schaeffer.gabrielh@gmail.com
 </details>
