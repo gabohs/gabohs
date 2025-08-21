@@ -10,7 +10,8 @@
 
 <br>
 
-<!-- SKILLS -->
+<!-- SKILLS 
+
 <div class="skills" align="center"> 
   <img alt="CPP" src="https://skillicons.dev/icons?i=cpp,python,arduino">
 </div>
@@ -20,6 +21,8 @@
   
   - 📧 schaeffer.gabrielh@gmail.com
 </details>
+
+-->
 
  <!-- SNAKE ANIMATION 
 <div class="snake" align="center">
