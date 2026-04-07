@@ -4,12 +4,15 @@ import requests
 
 GRAPHQL_URL = "https://api.github.com/graphql"
 
+YTD_START = f"{datetime.now().year}-01-01T00:00:00Z"
+YTD_NOW = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
+
 STATS_QUERY = f"""
 query userInfo($login: String!) {{
   user(login: $login) {{
     name
     login
-    commits: contributionsCollection(from: "{datetime.now().year}-01-01T00:00:00Z") {{
+    commits: contributionsCollection(from: "{YTD_START}", to: "{YTD_NOW}") {{
       totalCommitContributions
     }}
     repositoriesContributedTo(
@@ -171,7 +174,7 @@ def generate_readme(username: str, token: str, path: str = "README.md"):
     languages = bucket_languages(raw_languages, threshold=1.0)
 
     total_lang_size = sum(languages.values())
-    now = datetime.now().strftime("%Y-%m-%d %H:%M UTC")
+     = datetime.().strftime("%Y-%m-%d %H:%M UTC")
 
     lines = ["```"]
 
@@ -191,7 +194,6 @@ def generate_readme(username: str, token: str, path: str = "README.md"):
         row("> stars",         stats["stars"]),
         row("> commits (ytd)",   stats["commits"]),
         row("> pull requests", f"{stats['prs']}  ({stats['merged_prs']} merged)"),
-        row("> issues",        stats["issues"]),
         "",
     ]
 
@@ -209,15 +211,15 @@ def generate_readme(username: str, token: str, path: str = "README.md"):
     #    for repo in stats["contributed"][:6]:
     #        star_str = f"  ★ {repo['stars']}" if repo["stars"] else ""
     #        lines.append(f"  > {repo['name']}{star_str}")
-    #    lines.append("")
+    #    lines.append("") 
     #lines.append("")
 
     lines.append("```")
 
     # footer
-    lines += [
-        f"<small><small> > Last update:  {now} </small></small>",
-    ]
+    #lines += [
+    #    f"<small><small> > Last update:  {} </small></small>",
+    #]
 
     with open(path, "w", encoding="utf-8") as f:
         f.write("\n".join(lines) + "\n")
