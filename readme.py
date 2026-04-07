@@ -149,22 +149,19 @@ def generate_readme(username: str, token: str, path: str = "README.md"):
     now = datetime.now().strftime("%Y-%m-%d %H:%M UTC")
     total_lang_size = sum(languages.values())
 
-    lines = []
+    lines = ["```"]
 
     # header
     lines += [
-        "```",
         f"  ┌─────────────────────────────────────────────────────────┐",
         f"  │  ~ {stats['name']:<53}│",
         f"  │  $ github.com/{username:<43}│",
         f"  └─────────────────────────────────────────────────────────┘",
-        "```",
         "",
     ]
 
     # stats
     lines += [
-        "```",
         "  ── stats ──────────────────────────────────────────────────",
         "",
         f"  {'Stars':<18}  {stats['stars']}",
@@ -174,15 +171,12 @@ def generate_readme(username: str, token: str, path: str = "README.md"):
         f"  {'Followers':<18}  {stats['followers']}",
         f"  {'Public Repos':<18}  {stats['repos']}",
         "",
-        "```",
         "",
     ]
 
     # languages
     lines += [
-        "```",
         "  ── top languages ───────────────────────────────────────────",
-        "",
     ]
     for lang, size in list(languages.items())[:8]:
         percent = (size / total_lang_size) * 100 if total_lang_size > 0 else 0
@@ -190,10 +184,9 @@ def generate_readme(username: str, token: str, path: str = "README.md"):
         lines.append(f"  {lang:<14}  {bar}  {percent:5.1f}%")
     lines += ["", "```", ""]
 
-    # ── contributed to ───────────────────────────────────────────────────────
+    # contributed to
     if stats["contributed"]:
         lines += [
-            "```",
             "  ── contributed to ──────────────────────────────────────────",
             "",
         ]
@@ -203,11 +196,10 @@ def generate_readme(username: str, token: str, path: str = "README.md"):
             lines.append(f"  {repo['name']:<32}  {star_str}")
             if desc:
                 lines.append(f"  {'':32}  {desc}")
-        lines += ["", "```", ""]
+        lines += ""
 
-    # ── footer ───────────────────────────────────────────────────────────────
+    # footer
     lines += [
-        "```",
         f"  updated: {now:<49}",
         "```",
     ]
