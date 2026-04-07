@@ -2,9 +2,8 @@
   -- stats ─────────────────────────────────────────────────
 
   > stars           6
-  > commits (ytd)   23
+  > commits (ytd)   25
   > pull requests   10  (9 merged)
-  > issues          5
 
   -- languages ─────────────────────────────────────────────
 
@@ -14,4 +13,3 @@
   other           ░░░░░░░░░░░░░░░░░░░░   1.9%
 
 ```
-<small><small> > Last update:  2026-04-07 14:50 UTC </small></small>
