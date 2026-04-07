@@ -152,17 +152,17 @@ def generate_readme(username: str, token: str, path: str = "README.md"):
     lines = ["```"]
 
     # header
-    lines += [
-        f"  ┌─────────────────────────────────────────────────────────┐",
-        f"  │  ~ {stats['name']:<53}│",
-        f"  │  $ github.com/{username:<43}│",
-        f"  └─────────────────────────────────────────────────────────┘",
-        "",
-    ]
+    #lines += [
+    #    f"  ┌─────────────────────────────────────────────────────────┐",
+    #    f"  │  ~ {stats['name']:<53}│",
+    #    f"  │  $ github.com/{username:<43}│",
+    #    f"  └─────────────────────────────────────────────────────────┘",
+    #    "",
+    #]
 
     # stats
     lines += [
-        "  ── stats ──────────────────────────────────────────────────",
+        "  == stats ======================================================",
         "",
         f"  {'Stars':<18}  {stats['stars']}",
         f"  {'Commits (YTD)':<18}  {stats['commits']}",
@@ -176,7 +176,7 @@ def generate_readme(username: str, token: str, path: str = "README.md"):
 
     # languages
     lines += [
-        "  ── top languages ───────────────────────────────────────────",
+        "  == top languages ======================================================",
     ]
     for lang, size in list(languages.items())[:8]:
         percent = (size / total_lang_size) * 100 if total_lang_size > 0 else 0
@@ -184,10 +184,12 @@ def generate_readme(username: str, token: str, path: str = "README.md"):
         lines.append(f"  {lang:<14}  {bar}  {percent:5.1f}%")
     lines += ["", "```", ""]
 
+
     # contributed to
     if stats["contributed"]:
         lines += [
-            "  ── contributed to ──────────────────────────────────────────",
+            "```",
+            "  == contributed to ======================================================",
             "",
         ]
         for repo in stats["contributed"][:8]:
@@ -196,10 +198,11 @@ def generate_readme(username: str, token: str, path: str = "README.md"):
             lines.append(f"  {repo['name']:<32}  {star_str}")
             if desc:
                 lines.append(f"  {'':32}  {desc}")
-        lines += ""
+        lines += ["", "```", ""]
 
     # footer
     lines += [
+        "```",
         f"  updated: {now:<49}",
         "```",
     ]
