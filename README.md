@@ -1,4 +1,44 @@
-<div class="snake" align="center">
-  <img src="https://github.com/gabohs/gabohs/blob/output/github-contribution-grid-snake.svg">
-</div>  
+```
+  ┌─────────────────────────────────────────────────────────┐
+  │  ~ Gabriel H. Schaeffer                                 │
+  │  $ github.com/gabohs                                     │
+  └─────────────────────────────────────────────────────────┘
+```
 
+```
+  ── stats ──────────────────────────────────────────────────
+
+  Stars               6
+  Commits (YTD)       19
+  Pull Requests       10  (9 merged)
+  Issues              5
+  Followers           11
+  Public Repos        11
+
+```
+
+```
+  ── top languages ───────────────────────────────────────────
+
+  C++             [███████████████░░░░░░░]   67.8%
+  C               [██████░░░░░░░░░░░░░░░░]   29.3%
+  Java            [░░░░░░░░░░░░░░░░░░░░░░]    1.1%
+  HTML            [░░░░░░░░░░░░░░░░░░░░░░]    0.8%
+  CMake           [░░░░░░░░░░░░░░░░░░░░░░]    0.4%
+  JavaScript      [░░░░░░░░░░░░░░░░░░░░░░]    0.2%
+  PHP             [░░░░░░░░░░░░░░░░░░░░░░]    0.1%
+  CSS             [░░░░░░░░░░░░░░░░░░░░░░]    0.1%
+
+```
+
+```
+  ── contributed to ──────────────────────────────────────────
+
+  yangwenbo99/csapp-global-errata   ★ 49
+                                    Unofficial errata for the global edit…
+
+```
+
+```
+  updated: 2026-04-07 14:12 UTC                             
+```
