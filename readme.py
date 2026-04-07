@@ -174,7 +174,7 @@ def generate_readme(username: str, token: str, path: str = "README.md"):
     languages = bucket_languages(raw_languages, threshold=1.0)
 
     total_lang_size = sum(languages.values())
-     = datetime.().strftime("%Y-%m-%d %H:%M UTC")
+    now = datetime.now().strftime("%Y-%m-%d %H:%M UTC")
 
     lines = ["```"]
 
@@ -218,7 +218,7 @@ def generate_readme(username: str, token: str, path: str = "README.md"):
 
     # footer
     #lines += [
-    #    f"<small><small> > Last update:  {} </small></small>",
+    #    f"<small><small> > Last update:  {now} </small></small>",
     #]
 
     with open(path, "w", encoding="utf-8") as f:
