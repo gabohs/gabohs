@@ -1,12 +1,10 @@
 ```
   -- stats ─────────────────────────────────────────────────
 
-  stars             6
-  commits ytd       22
-  pull requests     10  (9 merged)
-  issues            5
-  followers         11
-  repos             11
+  > stars           6
+  > commits (ytd)   23
+  > pull requests   10  (9 merged)
+  > issues          5
 
   -- languages ─────────────────────────────────────────────
 
@@ -15,9 +13,7 @@
   Java            ░░░░░░░░░░░░░░░░░░░░   1.1%
   other           ░░░░░░░░░░░░░░░░░░░░   1.9%
 
-  -- contributed to ────────────────────────────────────────
-
-  yangwenbo99/csapp-global-errata  ★ 49
-
-  2026-04-07 14:34 UTC
-```
+`
+`
+`
+<small><small> > Last update:  2026-04-07 14:48 UTC </small></small>
