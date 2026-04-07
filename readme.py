@@ -95,12 +95,10 @@ def get_stats(username: str, token: str):
     contributed = []
     for repo in data["repositoriesContributedTo"]["nodes"]:
         name = repo["nameWithOwner"]
-        # skip own repos
         if name.lower().startswith(username.lower() + "/"):
             continue
         contributed.append({
             "name": name,
-            "description": repo.get("description") or "",
             "stars": repo["stargazers"]["totalCount"],
         })
 
@@ -131,27 +129,53 @@ def get_languages(username: str, token: str):
     return dict(sorted(languages.items(), key=lambda x: x[1], reverse=True))
 
 
-def percent_bar(percent: float, width: int = 22):
+def bucket_languages(languages: dict, threshold: float = 1.0):
+    """Keep languages above threshold%, group the rest as 'other'."""
+    total = sum(languages.values())
+    if total == 0:
+        return {}
+
+    result = {}
+    other = 0
+    for lang, size in languages.items():
+        if (size / total) * 100 >= threshold:
+            result[lang] = size
+        else:
+            other += size
+
+    if other > 0:
+        result["other"] = other
+
+    return result
+
+
+def percent_bar(percent: float, width: int = 20):
     percent = max(0, min(100, percent))
     filled = round((percent / 100) * width)
     empty = width - filled
-    return f"[{'█' * filled}{'░' * empty}]"
+    return f"{'█' * filled}{'░' * empty}"
 
 
-def truncate(s: str, n: int):
-    return s if len(s) <= n else s[: n - 1] + "…"
+def row(label: str, value, width: int = 16):
+    return f"  {label:<{width}}  {value}"
+
+
+def divider(title: str, total_width: int = 58):
+    side = total_width - len(title) - 4
+    return f"  -- {title} {'─' * side}"
 
 
 def generate_readme(username: str, token: str, path: str = "README.md"):
     stats = get_stats(username, token)
-    languages = get_languages(username, token)
+    raw_languages = get_languages(username, token)
+    languages = bucket_languages(raw_languages, threshold=1.0)
 
-    now = datetime.now().strftime("%Y-%m-%d %H:%M UTC")
     total_lang_size = sum(languages.values())
+    now = datetime.now().strftime("%Y-%m-%d %H:%M UTC")
 
     lines = ["```"]
 
-    # header
+    #header
     #lines += [
     #    f"  ┌─────────────────────────────────────────────────────────┐",
     #    f"  │  ~ {stats['name']:<53}│",
@@ -162,48 +186,36 @@ def generate_readme(username: str, token: str, path: str = "README.md"):
 
     # stats
     lines += [
-        "  == stats ======================================================",
+        divider("stats"),
         "",
-        f"  {'Stars':<18}  {stats['stars']}",
-        f"  {'Commits (YTD)':<18}  {stats['commits']}",
-        f"  {'Pull Requests':<18}  {stats['prs']}  ({stats['merged_prs']} merged)",
-        f"  {'Issues':<18}  {stats['issues']}",
-        f"  {'Followers':<18}  {stats['followers']}",
-        f"  {'Public Repos':<18}  {stats['repos']}",
-        "",
+        row("stars",         stats["stars"]),
+        row("commits ytd",   stats["commits"]),
+        row("pull requests", f"{stats['prs']}  ({stats['merged_prs']} merged)"),
+        row("issues",        stats["issues"]),
+        row("followers",     stats["followers"]),
+        row("repos",         stats["repos"]),
         "",
     ]
 
-    # languages
-    lines += [
-        "  == top languages ======================================================",
-    ]
-    for lang, size in list(languages.items())[:8]:
+    #  languages
+    lines += [divider("languages"), ""]
+    for lang, size in languages.items():
         percent = (size / total_lang_size) * 100 if total_lang_size > 0 else 0
         bar = percent_bar(percent)
-        lines.append(f"  {lang:<14}  {bar}  {percent:5.1f}%")
-    lines += ["", "```", ""]
-
+        lines.append(f"  {lang:<14}  {bar}  {percent:4.1f}%")
+    lines.append("")
 
     # contributed to
     if stats["contributed"]:
-        lines += [
-            "```",
-            "  == contributed to ======================================================",
-            "",
-        ]
-        for repo in stats["contributed"][:8]:
-            star_str = f"★ {repo['stars']}" if repo["stars"] else ""
-            desc = truncate(repo["description"], 38)
-            lines.append(f"  {repo['name']:<32}  {star_str}")
-            if desc:
-                lines.append(f"  {'':32}  {desc}")
-        lines += ["", "```", ""]
+        lines += [divider("contributed to"), ""]
+        for repo in stats["contributed"][:6]:
+            star_str = f"  ★ {repo['stars']}" if repo["stars"] else ""
+            lines.append(f"  {repo['name']}{star_str}")
+        lines.append("")
 
     # footer
     lines += [
-        "```",
-        f"  updated: {now:<49}",
+        f"  {now}",
         "```",
     ]
 
