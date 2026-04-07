@@ -188,12 +188,10 @@ def generate_readme(username: str, token: str, path: str = "README.md"):
     lines += [
         divider("stats"),
         "",
-        row("stars",         stats["stars"]),
-        row("commits ytd",   stats["commits"]),
-        row("pull requests", f"{stats['prs']}  ({stats['merged_prs']} merged)"),
-        row("issues",        stats["issues"]),
-        row("followers",     stats["followers"]),
-        row("repos",         stats["repos"]),
+        row("> stars",         stats["stars"]),
+        row("> commits (ytd)",   stats["commits"]),
+        row("> pull requests", f"{stats['prs']}  ({stats['merged_prs']} merged)"),
+        row("> issues",        stats["issues"]),
         "",
     ]
 
@@ -206,23 +204,25 @@ def generate_readme(username: str, token: str, path: str = "README.md"):
     lines.append("")
 
     # contributed to
-    if stats["contributed"]:
-        lines += [divider("contributed to"), ""]
-        for repo in stats["contributed"][:6]:
-            star_str = f"  ★ {repo['stars']}" if repo["stars"] else ""
-            lines.append(f"  {repo['name']}{star_str}")
-        lines.append("")
+    #if stats["contributed"]:
+    #    lines += [divider("contributed to"), ""]
+    #    for repo in stats["contributed"][:6]:
+    #        star_str = f"  ★ {repo['stars']}" if repo["stars"] else ""
+    #        lines.append(f"  > {repo['name']}{star_str}")
+    #    lines.append("")
+    #lines.append("")
+
+    lines += "```"
 
     # footer
     lines += [
-        f"  {now}",
-        "```",
+        f"<small><small> > Last update:  {now} </small></small>",
     ]
 
     with open(path, "w", encoding="utf-8") as f:
         f.write("\n".join(lines) + "\n")
 
-    print(f"README.md generated for @{username}")
+    # print(f"README.md generated for @{username}")
 
 
 if __name__ == "__main__":
