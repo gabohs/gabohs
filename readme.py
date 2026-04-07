@@ -212,7 +212,7 @@ def generate_readme(username: str, token: str, path: str = "README.md"):
     #    lines.append("")
     #lines.append("")
 
-    lines += "```"
+    lines.append("```")
 
     # footer
     lines += [
