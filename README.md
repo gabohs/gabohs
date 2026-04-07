@@ -3,23 +3,18 @@
   │  ~ Gabriel H. Schaeffer                                 │
   │  $ github.com/gabohs                                     │
   └─────────────────────────────────────────────────────────┘
-```
 
-```
   ── stats ──────────────────────────────────────────────────
 
   Stars               6
-  Commits (YTD)       19
+  Commits (YTD)       20
   Pull Requests       10  (9 merged)
   Issues              5
   Followers           11
   Public Repos        11
 
-```
 
-```
   ── top languages ───────────────────────────────────────────
-
   C++             [███████████████░░░░░░░]   67.8%
   C               [██████░░░░░░░░░░░░░░░░]   29.3%
   Java            [░░░░░░░░░░░░░░░░░░░░░░]    1.1%
@@ -31,14 +26,9 @@
 
 ```
 
-```
   ── contributed to ──────────────────────────────────────────
 
   yangwenbo99/csapp-global-errata   ★ 49
                                     Unofficial errata for the global edit…
-
-```
-
-```
-  updated: 2026-04-07 14:12 UTC                             
+  updated: 2026-04-07 14:17 UTC                             
 ```
