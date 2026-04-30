@@ -132,7 +132,7 @@ def get_languages(username: str, token: str):
     return dict(sorted(languages.items(), key=lambda x: x[1], reverse=True))
 
 
-def bucket_languages(languages: dict, threshold: float = 1.0):
+def bucket_languages(languages: dict, threshold: float = 0.5):
     """Keep languages above threshold%, group the rest as 'other'."""
     total = sum(languages.values())
     if total == 0:
