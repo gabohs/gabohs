@@ -178,15 +178,6 @@ def generate_readme(username: str, token: str, path: str = "README.md"):
 
     lines = ["```"]
 
-    #header
-    #lines += [
-    #    f"  ┌─────────────────────────────────────────────────────────┐",
-    #    f"  │  ~ {stats['name']:<53}│",
-    #    f"  │  $ github.com/{username:<43}│",
-    #    f"  └─────────────────────────────────────────────────────────┘",
-    #    "",
-    #]
-
     # stats
     lines += [
         divider("stats"),
