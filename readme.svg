@@ -1,0 +1,24 @@
+<svg width="620" height="378" viewBox="0 0 620 378" xmlns="http://www.w3.org/2000/svg">
+<style>text,tspan{font-family:ui-monospace, 'Cascadia Code', 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;font-size:14px;}</style>
+<rect x="0.5" y="0.5" width="619" height="377" rx="10" fill="#0D1117" stroke="#30363D"/>
+<path d="M0.5,10.5 a10,10 0 0 1 10,-10 h599 a10,10 0 0 1 10,10 v26 h-619 z" fill="#161B22"/>
+<line x1="0.5" y1="36" x2="619.5" y2="36" stroke="#30363D"/>
+<circle cx="18" cy="18.0" r="5.5" fill="#FF5F56" fill-opacity="0.9"/>
+<circle cx="36" cy="18.0" r="5.5" fill="#FFBD2E" fill-opacity="0.9"/>
+<circle cx="54" cy="18.0" r="5.5" fill="#27C93F" fill-opacity="0.9"/>
+<text x="310.0" y="22.0" text-anchor="middle" fill="#8B949E" font-size="12">gabohs@github ~ profile.stats</text>
+<text x="24" y="64" xml:space="preserve"><tspan fill="#79C0FF">-About</tspan></text>
+<text x="24" y="85" xml:space="preserve"><tspan fill="#FFA657">Interests:      </tspan><tspan fill="#C9D1D9"></tspan></text>
+<text x="24" y="106" xml:space="preserve"><tspan fill="#FFA657">Technologies:   </tspan><tspan fill="#C9D1D9">C, C++, Python, SQL</tspan></text>
+<text x="24" y="127" xml:space="preserve"><tspan fill="#C9D1D9"></tspan></text>
+<text x="24" y="148" xml:space="preserve"><tspan fill="#79C0FF">-Stats</tspan></text>
+<text x="24" y="169" xml:space="preserve"><tspan fill="#FFA657">Stars:          </tspan><tspan fill="#C9D1D9">0</tspan></text>
+<text x="24" y="190" xml:space="preserve"><tspan fill="#FFA657">commits (ytd):  </tspan><tspan fill="#C9D1D9">72</tspan></text>
+<text x="24" y="211" xml:space="preserve"><tspan fill="#FFA657">pull requests:  </tspan><tspan fill="#C9D1D9">10</tspan></text>
+<text x="24" y="232" xml:space="preserve"><tspan fill="#C9D1D9"></tspan></text>
+<text x="24" y="253" xml:space="preserve"><tspan fill="#79C0FF">-Languages</tspan></text>
+<text x="24" y="274" xml:space="preserve"><tspan fill="#f34b7d">C++               </tspan><tspan fill="#f34b7d">█████████████</tspan><tspan fill="#21262D">░░░░░░░</tspan><tspan fill="#8B949E">  66.7%</tspan></text>
+<text x="24" y="295" xml:space="preserve"><tspan fill="#737373">C                 </tspan><tspan fill="#737373">██████</tspan><tspan fill="#21262D">░░░░░░░░░░░░░░</tspan><tspan fill="#8B949E">  28.8%</tspan></text>
+<text x="24" y="316" xml:space="preserve"><tspan fill="#C9821D">Java              </tspan><tspan fill="#C9821D"></tspan><tspan fill="#21262D">░░░░░░░░░░░░░░░░░░░░</tspan><tspan fill="#8B949E">   2.5%</tspan></text>
+<text x="24" y="337" xml:space="preserve"><tspan fill="#8B949E">other             </tspan><tspan fill="#8B949E"></tspan><tspan fill="#21262D">░░░░░░░░░░░░░░░░░░░░</tspan><tspan fill="#8B949E">   2.0%</tspan></text>
+</svg>
