@@ -241,9 +241,9 @@ def main():
     languages = bucket_languages(raw_languages, threshold=1.0)
 
     svg = build_svg(INTERESTS, TECHNOLOGIES, stats, languages)
-    with open("stats-card.svg", "w", encoding="utf-8") as f:
+    with open("readme.svg", "w", encoding="utf-8") as f:
         f.write(svg)
-    print("Wrote stats-card.svg")
+    print("Wrote readme.svg")
 
 
 if __name__ == "__main__":
