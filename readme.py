@@ -5,7 +5,7 @@ from datetime import datetime
 import requests
 
 INTERESTS = ""
-TECHNOLOGIES = "C, C++, Python, SQL, x86 AVX"
+TECHNOLOGIES = "C, C++, Python, SQL"
 
 USER_NAME = os.getenv("USER_NAME", "gabohs")
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN", "")
@@ -54,12 +54,24 @@ def graphql_request(query: str, username: str, token: str):
     headers = {"Authorization": f"token {token}", "Content-Type": "application/json"}
     resp = requests.post(GRAPHQL_URL, json={"query": query, "variables": {"login": username}}, headers=headers)
     resp.raise_for_status()
-    return resp.json()
+    payload = resp.json()
+    # GitHub returns HTTP 200 even on partial failures (e.g. a repo the token can't
+    # fully see) — that shows up as an "errors" entry plus null fields in "data",
+    # not as a bad status code. Surface it instead of failing silently later.
+    if payload.get("errors"):
+        for err in payload["errors"]:
+            print("GraphQL warning:", err.get("message", err))
+    return payload
 
 
 def get_stats(username: str, token: str):
     data = graphql_request(STATS_QUERY, username, token)["data"]["user"]
-    stars = sum(r["stargazers"]["totalCount"] for r in data["repositories"]["nodes"])
+    repo_nodes = data["repositories"]["nodes"] or []
+    stars = sum(
+        (r.get("stargazers") or {}).get("totalCount", 0)
+        for r in repo_nodes
+        if r
+    )
     return {
         "stars": stars,
         "commits": data["commits"]["totalCommitContributions"],
@@ -69,10 +81,12 @@ def get_stats(username: str, token: str):
 
 def get_languages(username: str, token: str):
     data = graphql_request(LANGUAGES_QUERY, username, token)
-    nodes = data["data"]["user"]["repositories"]["nodes"]
+    nodes = data["data"]["user"]["repositories"]["nodes"] or []
     languages = {}
     for repo in nodes:
-        for edge in repo["languages"]["edges"]:
+        if not repo:
+            continue
+        for edge in (repo.get("languages") or {}).get("edges") or []:
             name = edge["node"]["name"]
             languages[name] = languages.get(name, 0) + edge["size"]
     return dict(sorted(languages.items(), key=lambda x: x[1], reverse=True))
@@ -98,7 +112,7 @@ def bucket_languages(languages: dict, threshold: float = 1.0):
 COLOR_BG = "#0D1117"
 COLOR_BORDER = "#30363D"
 COLOR_CHROME = "#161B22"
-COLOR_BLUE = "#79C0FF"      # headers
+COLOR_BLUE = "#79C0FF"      # headers 
 COLOR_ORANGE = "#FFA657"    # labels
 COLOR_TEXT = "#C9D1D9"      # values
 COLOR_MUTED = "#8B949E"     # percentages 
@@ -122,8 +136,8 @@ LANGUAGE_COLORS = {
     "Python": "#3572A5", "C": "#555555", "C++": "#f34b7d",
     "JavaScript": "#f1e05a", "TypeScript": "#3178c6", "Java": "#b07219",
     "Go": "#00ADD8", "Rust": "#dea584",
-    "Shell": "#89e051", "PHP": "#4F5D95", "Ruby": "#701516", "Swift": "#F05138",
-    "Kotlin": "#A97BFF", "Dart": "#00B4AB", "Jupyter Notebook": "#DA5B0B",
+    "Shell": "#89e051", "PHP": "#4F5D95", "Ruby": "#701516",
+    "Kotlin": "#A97BFF", "Jupyter Notebook": "#DA5B0B",
     "Dockerfile": "#384d54", "Makefile": "#427819", "Lua": "#000080",
     "R": "#198CE7", "SQL": "#e38c00", "Assembly": "#6E4C13",
     "TeX": "#3D6117", "CMake": "#DA3434",
