@@ -23,7 +23,7 @@ query userInfo($login: String!) {{
     pullRequests(first: 1) {{
       totalCount
     }}
-    repositories(first: 100, ownerAffiliations: OWNER, isFork: false) {{
+    repositories(first: 100, ownerAffiliations: OWNER) {{
       nodes {{
         stargazers {{ totalCount }}
       }}
@@ -133,8 +133,8 @@ LANG_NAME_COL = 18     # width reserved for language name
 BAR_WIDTH = 20         # width (chars) of the bar itself
 
 LANGUAGE_COLORS = {
-    "Python": "#3572A5", "C": "#555555", "C++": "#f34b7d",
-    "JavaScript": "#f1e05a", "TypeScript": "#3178c6", "Java": "#b07219",
+    "Python": "#ffcf3f", "C": "#555555", "C++": "#00599c",
+    "JavaScript": "#f1e05a", "TypeScript": "#3178c6", "Java": "#633C08",
     "Go": "#00ADD8", "Rust": "#dea584",
     "Shell": "#89e051", "PHP": "#4F5D95", "Ruby": "#701516",
     "Kotlin": "#A97BFF", "Jupyter Notebook": "#DA5B0B",
@@ -230,7 +230,7 @@ def build_svg(interests: str, technologies: str, stats: dict, languages: dict) -
         svg.append(f'<circle cx="{cx}" cy="{TOP_BAR_H/2}" r="5.5" fill="{dot_color}" fill-opacity="0.9"/>')
     svg.append(
         f'<text x="{WIDTH/2}" y="{TOP_BAR_H/2 + 4}" text-anchor="middle" '
-        f'fill="{COLOR_MUTED}" font-size="12">{esc(USER_NAME)}@github ~ profile.stats</text>'
+        f'fill="{COLOR_MUTED}" font-size="12">{esc(USER_NAME)}@github</text>'
     )
 
     y = TOP_BAR_H + PAD_TOP
