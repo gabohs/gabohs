@@ -1,11 +1,11 @@
-from datetime import datetime
+from datetime import datetime, timezone
 import os
 import requests
 
 GRAPHQL_URL = "https://api.github.com/graphql"
 
 YTD_START = f"{datetime.now().year}-01-01T00:00:00Z"
-YTD_NOW = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
+YTD_NOW = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 STATS_QUERY = f"""
 query userInfo($login: String!) {{
@@ -89,18 +89,18 @@ def graphql_request(query: str, username: str, token: str):
     response.raise_for_status()
     return response.json()
 
+
 def get_stats(username: str, token: str):
     res = graphql_request(STATS_QUERY, username, token)
     data = res.get("data", {}).get("user")
     if not data:
         raise ValueError(f"Failed to retrieve user data from GitHub API: {res.get('errors')}")
 
-    # Safely extract repositories and sum stargazers, filtering out null entries
     repo_nodes = data.get("repositories", {}).get("nodes") or []
     stars = sum(
-        repo["stargazers"]["totalCount"]
+        (repo.get("stargazers") or {}).get("totalCount", 0)
         for repo in repo_nodes
-        if repo and repo.get("stargazers")
+        if repo
     )
 
     contributed = []
@@ -111,24 +111,24 @@ def get_stats(username: str, token: str):
         name = repo.get("nameWithOwner", "")
         if name.lower().startswith(username.lower() + "/"):
             continue
-        stargazers = repo.get("stargazers")
+        stargazers = repo.get("stargazers") or {}
         contributed.append({
             "name": name,
-            "stars": stargazers["totalCount"] if stargazers else 0,
+            "stars": stargazers.get("totalCount", 0),
         })
 
     return {
         "name": data.get("name") or data.get("login"),
         "stars": stars,
-        "commits": data.get("commits", {}).get("totalCommitContributions", 0),
-        "prs": data.get("pullRequests", {}).get("totalCount", 0),
-        "merged_prs": data.get("mergedPullRequests", {}).get("totalCount", 0),
+        "commits": (data.get("commits") or {}).get("totalCommitContributions", 0),
+        "prs": (data.get("pullRequests") or {}).get("totalCount", 0),
+        "merged_prs": (data.get("mergedPullRequests") or {}).get("totalCount", 0),
         "issues": (
-            data.get("openIssues", {}).get("totalCount", 0)
-            + data.get("closedIssues", {}).get("totalCount", 0)
+            (data.get("openIssues") or {}).get("totalCount", 0)
+            + (data.get("closedIssues") or {}).get("totalCount", 0)
         ),
-        "followers": data.get("followers", {}).get("totalCount", 0),
-        "repos": data.get("repositories", {}).get("totalCount", 0),
+        "followers": (data.get("followers") or {}).get("totalCount", 0),
+        "repos": (data.get("repositories") or {}).get("totalCount", 0),
         "contributed": contributed,
     }
 
@@ -145,12 +145,13 @@ def get_languages(username: str, token: str):
     for repo in nodes:
         if not repo or not repo.get("languages"):
             continue
-        for edge in repo["languages"].get("edges") or []:
+        for edge in (repo["languages"].get("edges") or []):
             if not edge or not edge.get("node"):
                 continue
-            name = edge["node"]["name"]
+            name = edge["node"].get("name")
             size = edge.get("size", 0)
-            languages[name] = languages.get(name, 0) + size
+            if name:
+                languages[name] = languages.get(name, 0) + size
 
     return dict(sorted(languages.items(), key=lambda x: x[1], reverse=True))
 
@@ -197,7 +198,6 @@ def generate_readme(username: str, token: str, path: str = "README.md"):
     languages = bucket_languages(raw_languages, threshold=1.0)
 
     total_lang_size = sum(languages.values())
-    now = datetime.now().strftime("%Y-%m-%d %H:%M UTC")
 
     lines = ["```"]
 
@@ -205,13 +205,13 @@ def generate_readme(username: str, token: str, path: str = "README.md"):
     lines += [
         divider("stats"),
         "",
-        row("> stars",         stats["stars"]),
+        row("> stars",          stats["stars"]),
         row("> commits (ytd)",   stats["commits"]),
         row("> pull requests", f"{stats['prs']}  ({stats['merged_prs']} merged)"),
         "",
     ]
 
-    #  languages
+    # languages
     lines += [divider("languages"), ""]
     for lang, size in languages.items():
         percent = (size / total_lang_size) * 100 if total_lang_size > 0 else 0
@@ -219,26 +219,10 @@ def generate_readme(username: str, token: str, path: str = "README.md"):
         lines.append(f"  {lang:<14}  {bar}  {percent:4.1f}%")
     lines.append("")
 
-    # contributed to
-    #if stats["contributed"]:
-    #    lines += [divider("contributed to"), ""]
-    #    for repo in stats["contributed"][:6]:
-    #        star_str = f"  ★ {repo['stars']}" if repo["stars"] else ""
-    #        lines.append(f"  > {repo['name']}{star_str}")
-    #    lines.append("") 
-    #lines.append("")
-
     lines.append("```")
-
-    # footer
-    #lines += [
-    #    f"<small><small> > Last update:  {now} </small></small>",
-    #]
 
     with open(path, "w", encoding="utf-8") as f:
         f.write("\n".join(lines) + "\n")
-
-    # print(f"README.md generated for @{username}")
 
 
 if __name__ == "__main__":
