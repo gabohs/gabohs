@@ -1,8 +1,8 @@
 ### About
 
-                Interests: Machine Learning, Data Science, Python, C++
+**Interests**: Machine Learning, Data Science, Python, C++
 
-                Technologies: C, C++, Python, SQL
+**Technologies**: C, C++, Python, SQL
 
 ```
 	C++      █████████████░░░░░░░  66.3%
