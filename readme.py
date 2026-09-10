@@ -123,11 +123,10 @@ def generate_readme(username: str, token: str, path: str = "README.md"):
  
     with open(path, "w", encoding="utf-8") as f:
         f.write("### About")
-        f.write("<br>")
+        f.write("\n")
         f.write(f"Interests: {CONFIG['interests']}")
-        f.write("<br>")
+        f.write("\n")
         f.write(f"Technologies: {CONFIG['tech_stack']}")
-        f.write("<br>")
         
         f.write(card)
  
