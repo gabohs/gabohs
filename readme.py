@@ -89,44 +89,67 @@ def graphql_request(query: str, username: str, token: str):
     response.raise_for_status()
     return response.json()
 
-
 def get_stats(username: str, token: str):
-    data = graphql_request(STATS_QUERY, username, token)["data"]["user"]
+    res = graphql_request(STATS_QUERY, username, token)
+    data = res.get("data", {}).get("user")
+    if not data:
+        raise ValueError(f"Failed to retrieve user data from GitHub API: {res.get('errors')}")
 
-    stars = sum(r["stargazers"]["totalCount"] for r in data["repositories"]["nodes"])
+    # Safely extract repositories and sum stargazers, filtering out null entries
+    repo_nodes = data.get("repositories", {}).get("nodes") or []
+    stars = sum(
+        repo["stargazers"]["totalCount"]
+        for repo in repo_nodes
+        if repo and repo.get("stargazers")
+    )
 
     contributed = []
-    for repo in data["repositoriesContributedTo"]["nodes"]:
-        name = repo["nameWithOwner"]
+    contrib_nodes = data.get("repositoriesContributedTo", {}).get("nodes") or []
+    for repo in contrib_nodes:
+        if not repo:
+            continue
+        name = repo.get("nameWithOwner", "")
         if name.lower().startswith(username.lower() + "/"):
             continue
+        stargazers = repo.get("stargazers")
         contributed.append({
             "name": name,
-            "stars": repo["stargazers"]["totalCount"],
+            "stars": stargazers["totalCount"] if stargazers else 0,
         })
 
     return {
-        "name": data["name"] or data["login"],
+        "name": data.get("name") or data.get("login"),
         "stars": stars,
-        "commits": data["commits"]["totalCommitContributions"],
-        "prs": data["pullRequests"]["totalCount"],
-        "merged_prs": data["mergedPullRequests"]["totalCount"],
-        "issues": data["openIssues"]["totalCount"] + data["closedIssues"]["totalCount"],
-        "followers": data["followers"]["totalCount"],
-        "repos": data["repositories"]["totalCount"],
+        "commits": data.get("commits", {}).get("totalCommitContributions", 0),
+        "prs": data.get("pullRequests", {}).get("totalCount", 0),
+        "merged_prs": data.get("mergedPullRequests", {}).get("totalCount", 0),
+        "issues": (
+            data.get("openIssues", {}).get("totalCount", 0)
+            + data.get("closedIssues", {}).get("totalCount", 0)
+        ),
+        "followers": data.get("followers", {}).get("totalCount", 0),
+        "repos": data.get("repositories", {}).get("totalCount", 0),
         "contributed": contributed,
     }
 
 
 def get_languages(username: str, token: str):
-    data = graphql_request(LANGUAGES_QUERY, username, token)
-    nodes = data["data"]["user"]["repositories"]["nodes"]
+    res = graphql_request(LANGUAGES_QUERY, username, token)
+    user_data = res.get("data", {}).get("user")
+    if not user_data:
+        return {}
+
+    nodes = user_data.get("repositories", {}).get("nodes") or []
 
     languages = {}
     for repo in nodes:
-        for edge in repo["languages"]["edges"]:
+        if not repo or not repo.get("languages"):
+            continue
+        for edge in repo["languages"].get("edges") or []:
+            if not edge or not edge.get("node"):
+                continue
             name = edge["node"]["name"]
-            size = edge["size"]
+            size = edge.get("size", 0)
             languages[name] = languages.get(name, 0) + size
 
     return dict(sorted(languages.items(), key=lambda x: x[1], reverse=True))
