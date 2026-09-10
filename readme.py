@@ -1,6 +1,8 @@
 from datetime import datetime, timezone
 import os
 import requests
+
+import textwrap
  
 GRAPHQL_URL = "https://api.github.com/graphql"
  
@@ -122,12 +124,15 @@ def generate_readme(username: str, token: str, path: str = "README.md"):
     }
  
     with open(path, "w", encoding="utf-8") as f:
-        f.write(f"""### About
-        
-        Interests: {CONFIG['interests']}
-
-        Technologies: {CONFIG['tech_stack']}
-                """)
+        about = f"""### About
+                   
+                Interests: {CONFIG['interests']}
+         
+                Technologies: {CONFIG['tech_stack']}
+                """
+     
+     
+        f.write(textwrap.dedent(about))
      
         f.write(f"\n")
         
