@@ -115,7 +115,7 @@ def get_languages(username: str, token: str):
     return dict(sorted(languages.items(), key=lambda x: x[1], reverse=True))
  
  
-def bucket_languages(languages: dict, threshold: float = 1.0):
+def bucket_languages(languages: dict, threshold: float = 0.5):
     """Keep languages above threshold%, group the rest as 'other'."""
     total = sum(languages.values())
     if total == 0:
@@ -159,22 +159,22 @@ def render_card(stats: dict, languages: dict) -> str:
  
     # -About
     lines.append("-About")
-    lines.append(kv_line("Interests", CONFIG["interests"]))
-    lines.append(kv_line("Technologies", CONFIG["technologies"]))
+    lines.append("\t" + kv_line("Interests", CONFIG["interests"]))
+    lines.append("\t" + kv_line("Technologies", CONFIG["technologies"]))
     lines.append("")
  
     # -Stats
     lines.append("-Stats")
-    lines.append(kv_line("Stars", stats["stars"]))
-    lines.append(kv_line("commits (ytd)", stats["commits"]))
-    lines.append(kv_line("pull requests", f"{stats['prs']} ({stats['merged_prs']} merged)"))
+    lines.append("\t" + kv_line("Stars", stats["stars"]))
+    lines.append("\t" + kv_line("commits (ytd)", stats["commits"]))
+    lines.append("\t" + kv_line("pull requests", f"{stats['prs']} ({stats['merged_prs']} merged)"))
     lines.append("")
  
     # -Languages
     lines.append("-Languages")
     for lang, size in languages.items():
         percent = (size / total_lang_size) * 100 if total_lang_size > 0 else 0
-        lines.append(lang_line(lang, percent))
+        lines.append("\t" + lang_line(lang, percent))
  
     lines.append("```")
     return "\n".join(lines) + "\n"
@@ -183,7 +183,7 @@ def render_card(stats: dict, languages: dict) -> str:
 def generate_readme(username: str, token: str, path: str = "README.md"):
     stats = get_stats(username, token)
     raw_languages = get_languages(username, token)
-    languages = bucket_languages(raw_languages, threshold=1.0)
+    languages = bucket_languages(raw_languages, threshold=0.5)
  
     card = render_card(stats, languages)
  
