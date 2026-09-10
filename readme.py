@@ -124,15 +124,17 @@ def generate_readme(username: str, token: str, path: str = "README.md"):
     }
  
     with open(path, "w", encoding="utf-8") as f:
-        about = f"""### About
-                   
-                Interests: {CONFIG['interests']}
-         
-                Technologies: {CONFIG['tech_stack']}
-                """
+        about = textwrap.dedent(
+            f"""\
+            ### About
+    
+            **Interests**: {CONFIG['interests']}
+    
+            **Technologies**: {CONFIG['tech_stack']}
+            """
+        )
      
-     
-        f.write(textwrap.dedent(about))
+        f.write(about)
      
         f.write(f"\n")
         
