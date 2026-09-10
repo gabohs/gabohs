@@ -1,17 +1,6 @@
-```
--About
-	Interests:      Machine Learning, Data Science, Python, C++
-	Technologies:   C, C++, Python, SQL
-
--Stats
-	Stars:          0
-	commits (ytd):  88
-	pull requests:  10 (9 merged)
-
--Languages
+### About<br>Interests: Machine Learning, Data Science, Python, C++<br>Technologies: C, C++, Python, SQL<br>```
 	C++      █████████████░░░░░░░  66.3%
 	C        ██████░░░░░░░░░░░░░░  28.6%
 	Java     █░░░░░░░░░░░░░░░░░░░   2.9%
-	HTML     ░░░░░░░░░░░░░░░░░░░░   0.9%
-	other    ░░░░░░░░░░░░░░░░░░░░   1.3%
+	other    ░░░░░░░░░░░░░░░░░░░░   2.1%
 ```
