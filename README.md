@@ -1,13 +1,12 @@
-### About
+### About me/Sobre mim
 
-**Interests**: Machine Learning, Data Science, Python, C++
+**Interests/Interesses**: Machine Learning, Data Science, Python, C++
 
-**Technologies**: C, C++, Python, SQL
+**Technologies/Tecnologias**: C, C++, Python, SQL
 
 ```
-	C++      █████████████░░░░░░░  64.7%
-	C        ██████░░░░░░░░░░░░░░  27.9%
-	Java     █░░░░░░░░░░░░░░░░░░░   3.9%
-	HTML     ░░░░░░░░░░░░░░░░░░░░   2.0%
-	other    ░░░░░░░░░░░░░░░░░░░░   1.4%
+	C++      █████████████░░░░░░░  66.5%
+	C        ██████░░░░░░░░░░░░░░  28.7%
+	Java     █░░░░░░░░░░░░░░░░░░░   4.0%
+	other    ░░░░░░░░░░░░░░░░░░░░   0.8%
 ```
