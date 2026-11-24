@@ -9,6 +9,16 @@ GRAPHQL_URL = "https://api.github.com/graphql"
 YTD_START = f"{datetime.now().year}-01-01T00:00:00Z"
 YTD_NOW = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
+IGNORED_LANGUAGES = {
+    "Jupyter Notebook",
+    "HTML",
+    "CSS",
+    "Makefile",
+    "CMake",
+    "Batchfile",
+    "Dockerfile"
+}
+
  
 LANGUAGES_QUERY = """
 query userInfo($login: String!) {
@@ -42,26 +52,29 @@ def graphql_request(query: str, username: str, token: str):
     return response.json()
  
  
-def get_languages(username: str, token: str):
-    res = graphql_request(LANGUAGES_QUERY, username, token)
-    user_data = res.get("data", {}).get("user")
-    if not user_data:
-        return {}
- 
-    nodes = user_data.get("repositories", {}).get("nodes") or []
- 
+def get_languages(username: str, orgs: list, token: str) -> dict:
+    repos = fetch_repos(USER_REPOS_QUERY, "user", username, token)
+    for org in orgs:
+        repos += fetch_repos(ORG_REPOS_QUERY, "organization", org, token)
+
+    ignored = {lang.lower() for lang in IGNORED_LANGUAGES}
+
+    seen = set()
     languages = {}
-    for repo in nodes:
-        if not repo or not repo.get("languages"):
+    for repo in repos:
+        key = repo["nameWithOwner"]
+        if key in seen:
             continue
-        for edge in (repo["languages"].get("edges") or []):
+        seen.add(key)
+
+        for edge in (repo.get("languages") or {}).get("edges") or []:
             if not edge or not edge.get("node"):
                 continue
             name = edge["node"].get("name")
-            size = edge.get("size", 0)
-            if name:
-                languages[name] = languages.get(name, 0) + size
- 
+            if not name or name.lower() in ignored:
+                continue
+            languages[name] = languages.get(name, 0) + edge.get("size", 0)
+
     return dict(sorted(languages.items(), key=lambda x: x[1], reverse=True))
  
  
@@ -126,11 +139,11 @@ def generate_readme(username: str, token: str, path: str = "README.md"):
     with open(path, "w", encoding="utf-8") as f:
         about = textwrap.dedent(
             f"""\
-            ### About
+            ### About me/Sobre mim
     
-            **Interests**: {CONFIG['interests']}
+            **Interests/Interesses**: {CONFIG['interests']}
     
-            **Technologies**: {CONFIG['tech_stack']}
+            **Technologies/Tecnologias**: {CONFIG['tech_stack']}
             """
         )
      
